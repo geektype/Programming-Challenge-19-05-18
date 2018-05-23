@@ -51,3 +51,15 @@ while testing:
 
 print("quiz finished. Out of 10 points you scored", str(points), "point(s)")
 
+print("Do you want to save your score?")
+resp = str(input(">>>"))
+
+if resp == "yes" or resp == "y":
+	name = str(input("Enter your name"))
+else:
+	exit()
+
+hsFile = "highscore.txt"
+with open(hsFile, 'a') as hs:
+	line = 	name + "," + str(points) + "\n"
+	hs.write(line)
