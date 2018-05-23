@@ -3,6 +3,18 @@ from random import choice
 #import the module we need to exit cleanly
 from sys import exit
 
+
+def showLeadeBoard(file):
+	leaderBoard = {}
+	with open(file) as f:
+		for line in f:
+			if ',' in line:
+				player, score = line.strip().split(',', 1)
+				leaderBoard[player] = score.strip()
+	for item in leaderBoard:
+		print("Name:" + str(item))
+		print("Score" + str(leaderBoard[item]))
+
 #the test bank with questions as their key and answer as the value
 testBank = {}
 #Points to keep track of the corrct answers
@@ -57,9 +69,12 @@ resp = str(input(">>>"))
 if resp == "yes" or resp == "y":
 	name = str(input("Enter your name"))
 else:
+	showLeadeBoard("highscore.txt")
 	exit()
 
 hsFile = "highscore.txt"
 with open(hsFile, 'a') as hs:
 	line = 	name + "," + str(points) + "\n"
 	hs.write(line)
+
+showLeadeBoard("highscore.txt")
